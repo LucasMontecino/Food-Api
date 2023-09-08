@@ -2,7 +2,7 @@ import axios from "axios";
 
 export function getRecipes() {
   return async function (dispatch) {
-    var json = await axios.get("http://localhost:3001/recipes");
+    var json = await axios.get("/recipes");
 
     return dispatch({
       type: "GET_RECIPES",
@@ -14,7 +14,7 @@ export function getRecipes() {
 export function getRecipesName(name) {
   return async function (dispatch) {
     try {
-      var json = await axios.get("http://localhost:3001/recipes?name=" + name);
+      var json = await axios.get("/recipes?name=" + name);
       return dispatch({
         type: "GET_RECIPES_NAME",
         payload: json.data,
@@ -27,7 +27,7 @@ export function getRecipesName(name) {
 
 export function getDiets() {
   return async function (dispatch) {
-    let json = await axios.get("http://localhost:3001/diets");
+    let json = await axios.get("/diets");
 
     return dispatch({
       type: "GET_DIETS",
