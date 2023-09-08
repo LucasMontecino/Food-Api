@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.background {
+    margin: 0;
+    background-image: url("https://static01.nyt.com/images/2021/01/26/well/well-foods-microbiome/well-foods-microbiome-superJumbo.jpg");
+    height: 100vh;
+    /* background-position: center; */
+    background-size: cover;
+}
+
+.showcase h1 {
+    margin-bottom: 10px;
+    padding-top: 10px;
+}
+
+.showcase button {
+    width: 200px;
+    height: 30px;
+    border-radius: 10px;
+    color: #E4F0FB;
+    background-color: #0B3054;
+    border-color: #0B3054;
+    transition-duration: 0.6s;
+    cursor: pointer;
+}
+
+.showcase button:hover {
+    background-color: #225B95;
+    border-color: #225B95;
+}
