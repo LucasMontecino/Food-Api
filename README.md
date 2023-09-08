@@ -1,10 +1,10 @@
 <!-- ![HenryLogo](https://d31uz8lwfmyn8g.cloudfront.net/Assets/logo-henry-white-lg.png) -->
 
-# Individual Project - Henry Food
+# Individual Project - Food Api
 
-<p align="right">
+<!-- <p align="right">
   <img height="200" src="./cooking.png" />
-</p>
+</p> -->
 
 ## Objetivos del Proyecto
 
