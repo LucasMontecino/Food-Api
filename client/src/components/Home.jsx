@@ -5,37 +5,20 @@ import { Link } from "react-router-dom";
 import Card from "./Card";
 import style from "./Home.module.css";
 import { CustomButton } from "./CustomButton";
-// import { SearchBar } from "./SearchBar";
-// import Paginate from "./Paginate";
+import { SearchBar } from "./SearchBar";
 
 export default function Home() {
   const dispatch = useDispatch();
   const allRecipes = useSelector((state) => state.recipes);
   const allDiets = useSelector((state) => state.diets);
   const [currentPage, setCurrentPage] = useState(0);
-  const [search, setSearch] = useState("");
-  // console.log(allRecipes);
 
-  const filteredRecipes = () => {
-    if (search.length === 0) {
-      return allRecipes.slice(currentPage, currentPage + 6);
-    }
-
-    const filtered = allRecipes.filter((recipe) =>
-      recipe.name.toLowerCase().includes(search.toLowerCase())
-    );
-    return filtered.slice(currentPage, currentPage + 6);
+  const currentRecipes = () => {
+    return allRecipes.slice(currentPage, currentPage + 6);
   };
 
   const nextPage = () => {
-    if (
-      allRecipes.filter((recipe) =>
-        recipe.name.toLowerCase().includes(search.toLowerCase())
-      ).length >
-      currentPage + 6
-    ) {
-      setCurrentPage(currentPage + 6);
-    }
+    setCurrentPage(currentPage + 6);
   };
 
   const prevPage = () => {
@@ -44,19 +27,15 @@ export default function Home() {
     }
   };
 
-  const onSearch = (event) => {
-    setCurrentPage(0);
-    setSearch(event.target.value);
-  };
-
   useEffect(() => {
     dispatch(getRecipes());
     dispatch(getDiets());
   }, [dispatch]);
 
-  const handleClick = (e) => {
-    e.preventDefault();
+  const handleClick = () => {
     dispatch(getRecipes());
+    dispatch(getDiets());
+    setCurrentPage(0);
   };
 
   return (
@@ -69,20 +48,13 @@ export default function Home() {
           </Link>
           <CustomButton
             text="Cargar todas las recetas"
-            alHacerClick={(e) => handleClick(e)}
+            onClick={(e) => handleClick(e)}
           />
         </div>
 
         <h1>FOOD ENCYCLOPEDIA</h1>
 
         <div className={style.main_header_filtersearchbar}>
-          <input
-            type="search"
-            placeholder="Buscar receta..."
-            value={search}
-            onChange={onSearch}
-          />
-
           {/* Filtros */}
 
           <div>
@@ -111,11 +83,11 @@ export default function Home() {
 
       {/* Contenedor principal del Home  */}
       <div className={style.btnDisplay}>
-        <CustomButton text="Prev" alHacerClick={prevPage} />
-        <CustomButton text="Next" alHacerClick={nextPage} />
+        <CustomButton text="Prev" onClick={prevPage} />
+        <CustomButton text="Next" onClick={nextPage} />
       </div>
       <div className={style.grid_container}>
-        {filteredRecipes()?.map((el) => {
+        {currentRecipes()?.map((el) => {
           let diets = el.diets.length
             ? el.diets[0].name
               ? el.diets.map((el) => el.name)

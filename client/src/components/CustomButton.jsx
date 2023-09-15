@@ -1,10 +1,10 @@
 import React from "react";
 import style from "./CustomButton.module.css";
 
-export const CustomButton = ({ text, alHacerClick, type }) => {
+export const CustomButton = ({ text, onClick, type }) => {
   return (
     <div className={style}>
-      <button onClick={alHacerClick}>{text}</button>
+      <button onClick={onClick}>{text}</button>
     </div>
   );
 };
