@@ -1,24 +1,24 @@
 require("dotenv").config();
 const axios = require("axios");
-const { Recipe, Diet } = require("../db")
+const { Recipe, Diet } = require("../db");
 const { Router } = require("express");
 const recipeRoute = Router();
 const { API_KEY } = process.env;
-const apiUrl = require("../../complexSearch.json")
+const apiUrl = require("../../complexSearch.json");
 
 const getApiInfo = async () => {
   // const apiUrl = await axios.get(
   //   `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=50`
   // );
-  const apiInfo = apiUrl.results.map(el => {
+  const apiInfo = apiUrl.results.map((el) => {
     return {
-        id: el.id,
-        name: el.title,
-        summary: el.summary,
-        diets: el.diets.map(ele => ele),
-        healthScore: el.healthScore,
-        // steps: el.analyzedInstructions[0] ? el.analyzedInstructions[0].steps.map(ele => ele.step) : 'No contiene pasos a seguir',
-        image: el.image
+      id: el.id,
+      name: el.title,
+      summary: el.summary,
+      diets: el.diets.map((ele) => ele),
+      healthScore: el.healthScore,
+      // steps: el.analyzedInstructions[0] ? el.analyzedInstructions[0].steps.map(ele => ele.step) : 'No contiene pasos a seguir',
+      image: el.image,
     };
   });
   return apiInfo;
@@ -44,12 +44,21 @@ const getAllRecipes = async () => {
 };
 
 recipeRoute.get("/", async (req, res) => {
-  let { name } = req.query
+  let { name, diet } = req.query;
   try {
     const recipesTotal = await getAllRecipes();
-    if(name){
-      let recipeName = recipesTotal.filter(el => el.name.toLowerCase().includes(name.toLowerCase()))
-      recipeName.length ? res.json(recipeName) : res.status(404).json("No hay reseta con ese nombre")
+    if (name) {
+      let recipeName = recipesTotal.filter((el) =>
+        el.name.toLowerCase().includes(name.toLowerCase())
+      );
+      recipeName.length
+        ? res.json(recipeName)
+        : res.status(404).json("No hay receta con ese nombre");
+    } else if (diet) {
+      let filteredByDiet = recipesTotal.filter((el) => el.diets.includes(diet));
+      filteredByDiet.length
+        ? res.json(filteredByDiet)
+        : res.status(404).json("No hay receta con ese tipo de dieta");
     } else {
       res.json(recipesTotal);
     }
@@ -59,16 +68,18 @@ recipeRoute.get("/", async (req, res) => {
 });
 
 recipeRoute.get("/:id", async (req, res) => {
-  let { id } = req.params
+  let { id } = req.params;
   try {
     const recipesTotal = await getAllRecipes();
-    if(id){
-      let recipe = recipesTotal.find(el => el.id == id)
-      recipe ? res.json(recipe) : res.status(404).json("No existe receta con ese id")
+    if (id) {
+      let recipe = recipesTotal.find((el) => el.id == id);
+      recipe
+        ? res.json(recipe)
+        : res.status(404).json("No existe receta con ese id");
     }
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
-})
+});
 
 module.exports = recipeRoute;

@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getRecipes, getDiets } from "../actions";
+import {
+  getRecipes,
+  getDiets,
+  filteredByDiet,
+  alphabeticalOrder,
+} from "../actions";
 import { Link } from "react-router-dom";
 import Card from "./Card";
 import style from "./Home.module.css";
 import { CustomButton } from "./CustomButton";
-import { SearchBar } from "./SearchBar";
+import SelectFilter from "./SelectFilter";
+// import { SearchBar } from "./SearchBar";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -13,12 +19,17 @@ export default function Home() {
   const allDiets = useSelector((state) => state.diets);
   const [currentPage, setCurrentPage] = useState(0);
 
+  const [order, setOrder] = useState("");
+  const [orderDiets, setOrderDiets] = useState("");
+
   const currentRecipes = () => {
     return allRecipes.slice(currentPage, currentPage + 6);
   };
 
   const nextPage = () => {
-    setCurrentPage(currentPage + 6);
+    if (currentPage + 6 < allRecipes.length) {
+      setCurrentPage(currentPage + 6);
+    }
   };
 
   const prevPage = () => {
@@ -32,9 +43,25 @@ export default function Home() {
     dispatch(getDiets());
   }, [dispatch]);
 
-  const handleClick = () => {
+  function handleFilterByDiets(e) {
+    e.preventDefault();
+    dispatch(filteredByDiet(e.target.value));
+    setCurrentPage(0);
+    setOrderDiets(e.target.value);
+  }
+
+  function handleFilterAlphabeticalOrder(e) {
+    e.preventDefault();
+    dispatch(alphabeticalOrder(e.target.value));
+    setCurrentPage(0);
+    setOrder(e.target.value);
+  }
+
+  const handleReload = () => {
     dispatch(getRecipes());
     dispatch(getDiets());
+    setOrder("");
+    setOrderDiets("");
     setCurrentPage(0);
   };
 
@@ -48,7 +75,7 @@ export default function Home() {
           </Link>
           <CustomButton
             text="Cargar todas las recetas"
-            onClick={(e) => handleClick(e)}
+            onClick={handleReload}
           />
         </div>
 
@@ -58,25 +85,18 @@ export default function Home() {
           {/* Filtros */}
 
           <div>
-            <select>
-              <option value="ascendente">Ascendente</option>
-              <option value="descendente">Descendente</option>
-            </select>
+            <SelectFilter
+              onChange={(e) => handleFilterAlphabeticalOrder(e)}
+              textDefault={"A-Z Order"}
+              value={order}
+            />
 
-            <select>
-              <option value="All">Todas las dietas</option>
-              {allDiets?.map((el) => (
-                <option value={el.name} key={el.id}>
-                  {el.name}
-                </option>
-              ))}
-            </select>
-
-            <select>
-              <option value="All">Todos las recetas</option>
-              <option value="api">Recetas de la API</option>
-              <option value="created">Recetas creadas</option>
-            </select>
+            <SelectFilter
+              array={allDiets}
+              onChange={handleFilterByDiets}
+              textDefault={"Todas las Dietas"}
+              value={orderDiets}
+            />
           </div>
         </div>
       </header>
