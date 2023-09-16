@@ -4,8 +4,8 @@ import LandingPage from "./components/LandingPage";
 import Home from "./components/Home";
 import axios from "axios";
 
-axios.defaults.baseURL = "https://food-api-server.onrender.com";
-// axios.defaults.baseURL = "http://localhost:3001";
+// axios.defaults.baseURL = "https://food-api-server.onrender.com";
+axios.defaults.baseURL = "http://localhost:3001";
 
 function App() {
   return (

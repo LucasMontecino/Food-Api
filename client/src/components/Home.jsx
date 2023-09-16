@@ -5,6 +5,7 @@ import {
   getDiets,
   filteredByDiet,
   alphabeticalOrder,
+  createdFilter,
 } from "../actions";
 import { Link } from "react-router-dom";
 import Card from "./Card";
@@ -21,6 +22,7 @@ export default function Home() {
 
   const [order, setOrder] = useState("");
   const [orderDiets, setOrderDiets] = useState("");
+  const [createdOrder, setCreatedOrder] = useState("");
 
   const currentRecipes = () => {
     return allRecipes.slice(currentPage, currentPage + 6);
@@ -57,11 +59,19 @@ export default function Home() {
     setOrder(e.target.value);
   }
 
+  function handleCreatedOrder(e) {
+    e.preventDefault();
+    dispatch(createdFilter(e.target.value));
+    setCurrentPage(0);
+    setCreatedOrder(e.target.value);
+  }
+
   const handleReload = () => {
     dispatch(getRecipes());
     dispatch(getDiets());
     setOrder("");
     setOrderDiets("");
+    setCreatedOrder("");
     setCurrentPage(0);
   };
 
@@ -84,20 +94,26 @@ export default function Home() {
         <div className={style.main_header_filtersearchbar}>
           {/* Filtros */}
 
-          <div>
-            <SelectFilter
-              onChange={(e) => handleFilterAlphabeticalOrder(e)}
-              textDefault={"A-Z Order"}
-              value={order}
-            />
+          <SelectFilter
+            onChange={handleFilterAlphabeticalOrder}
+            textDefault={"A-Z Order"}
+            value={order}
+            keyword={"alphabetical"}
+          />
 
-            <SelectFilter
-              array={allDiets}
-              onChange={handleFilterByDiets}
-              textDefault={"Todas las Dietas"}
-              value={orderDiets}
-            />
-          </div>
+          <SelectFilter
+            array={allDiets}
+            onChange={handleFilterByDiets}
+            textDefault={"Todas las Dietas"}
+            value={orderDiets}
+          />
+
+          <SelectFilter
+            keyword={"created"}
+            onChange={handleCreatedOrder}
+            textDefault={"Todas las Recetas"}
+            value={createdOrder}
+          />
         </div>
       </header>
 

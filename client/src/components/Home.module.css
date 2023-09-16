@@ -33,7 +33,7 @@ h1::after {
 
 .main_header {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     height: 68px;
     margin-bottom: 20px;
@@ -54,8 +54,7 @@ h1::after {
 }
 
 .main_header_filtersearchbar {
-    margin-right: 10px;
-    margin-left: 10px;
+    display: flex;
 }
 
 .grid_container {

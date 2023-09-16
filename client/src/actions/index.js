@@ -1,6 +1,7 @@
 import axios from "axios";
 import {
   ALPHABETICAL_ORDER,
+  CREATED_FILTER,
   FILTERED_BY_DIET,
   GET_DIETS,
   GET_RECIPES,
@@ -61,5 +62,19 @@ export function alphabeticalOrder(payload) {
   return {
     type: ALPHABETICAL_ORDER,
     payload,
+  };
+}
+
+export function createdFilter(payload) {
+  return async function (dispatch) {
+    try {
+      let json = await axios.get(`/recipes?created=${payload}`);
+      return dispatch({
+        type: CREATED_FILTER,
+        payload: json.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 }
