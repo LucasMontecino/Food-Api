@@ -12,6 +12,7 @@ import Card from "./Card";
 import style from "./Home.module.css";
 import { CustomButton } from "./CustomButton";
 import SelectFilter from "./SelectFilter";
+import SearchBar from "./SearchBar";
 // import { SearchBar } from "./SearchBar";
 
 export default function Home() {
@@ -93,27 +94,29 @@ export default function Home() {
 
         <div className={style.main_header_filtersearchbar}>
           {/* Filtros */}
+          <SearchBar setCurrentPage={setCurrentPage} />
+          <div className={style.select_container}>
+            <SelectFilter
+              onChange={handleFilterAlphabeticalOrder}
+              textDefault={"A-Z Order"}
+              value={order}
+              keyword={"alphabetical"}
+            />
 
-          <SelectFilter
-            onChange={handleFilterAlphabeticalOrder}
-            textDefault={"A-Z Order"}
-            value={order}
-            keyword={"alphabetical"}
-          />
+            <SelectFilter
+              array={allDiets}
+              onChange={handleFilterByDiets}
+              textDefault={"Todas las Dietas"}
+              value={orderDiets}
+            />
 
-          <SelectFilter
-            array={allDiets}
-            onChange={handleFilterByDiets}
-            textDefault={"Todas las Dietas"}
-            value={orderDiets}
-          />
-
-          <SelectFilter
-            keyword={"created"}
-            onChange={handleCreatedOrder}
-            textDefault={"Todas las Recetas"}
-            value={createdOrder}
-          />
+            <SelectFilter
+              keyword={"created"}
+              onChange={handleCreatedOrder}
+              textDefault={"Todas las Recetas"}
+              value={createdOrder}
+            />
+          </div>
         </div>
       </header>
 

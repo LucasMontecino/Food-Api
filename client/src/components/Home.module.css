@@ -55,6 +55,11 @@ h1::after {
 
 .main_header_filtersearchbar {
     display: flex;
+    flex-direction: column;
+}
+
+.select_container {
+    display: flex;
 }
 
 .grid_container {
