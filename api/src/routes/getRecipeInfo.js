@@ -44,7 +44,7 @@ const getAllRecipes = async () => {
 };
 
 recipeRoute.get("/", async (req, res) => {
-  let { name, diet } = req.query;
+  let { name, diet, created } = req.query;
   try {
     const recipesTotal = await getAllRecipes();
     if (name) {
@@ -59,6 +59,16 @@ recipeRoute.get("/", async (req, res) => {
       filteredByDiet.length
         ? res.json(filteredByDiet)
         : res.status(404).json("No hay receta con ese tipo de dieta");
+    } else if (created) {
+      let filterByFlag =
+        created === "api"
+          ? recipesTotal.filter((el) => !el.createdInDb)
+          : created === "db"
+          ? recipesTotal.filter((el) => el.createdInDb)
+          : recipesTotal;
+      filterByFlag.length
+        ? res.status(200).json(filterByFlag)
+        : res.status(404).json("Algo no salió bien!");
     } else {
       res.json(recipesTotal);
     }
