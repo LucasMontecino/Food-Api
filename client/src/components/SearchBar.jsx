@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import style from "./SearchBar.module.css";
 import { CustomButton } from "./CustomButton";
@@ -38,7 +40,10 @@ const SearchBar = ({ setCurrentPage }) => {
         onKeyUp={handleKeyUp}
         placeholder="Enter recipe name..."
       />
-      <CustomButton onClick={handleSubmit} text={"Search"} />
+      <CustomButton
+        onClick={handleSubmit}
+        text={<FontAwesomeIcon icon={faSearch} />}
+      />
     </div>
   );
 };
