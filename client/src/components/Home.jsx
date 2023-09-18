@@ -13,12 +13,14 @@ import style from "./Home.module.css";
 import { CustomButton } from "./CustomButton";
 import SelectFilter from "./SelectFilter";
 import SearchBar from "./SearchBar";
+import Loading from "./Loading";
 // import { SearchBar } from "./SearchBar";
 
 export default function Home() {
   const dispatch = useDispatch();
   const allRecipes = useSelector((state) => state.recipes);
   const allDiets = useSelector((state) => state.diets);
+  const isLoading = useSelector((state) => state.isLoading);
   const [currentPage, setCurrentPage] = useState(0);
 
   const [order, setOrder] = useState("");
@@ -75,6 +77,10 @@ export default function Home() {
     setCreatedOrder("");
     setCurrentPage(0);
   };
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <>
