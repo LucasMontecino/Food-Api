@@ -6,23 +6,30 @@ import {
   GET_DIETS,
   GET_RECIPES,
   GET_RECIPES_NAME,
+  GET_RECIPES_START,
 } from "../reducer";
 
 export function getRecipes() {
   return async function (dispatch) {
-    var json = await axios.get("/recipes");
+    dispatch(getRecipesStart());
+    try {
+      let json = await axios.get("/recipes");
 
-    return dispatch({
-      type: GET_RECIPES,
-      payload: json.data,
-    });
+      return dispatch({
+        type: GET_RECIPES,
+        payload: json.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 }
 
 export function getRecipesName(name) {
   return async function (dispatch) {
+    dispatch(getRecipesStart());
     try {
-      var json = await axios.get("/recipes?name=" + name);
+      let json = await axios.get("/recipes?name=" + name);
       return dispatch({
         type: GET_RECIPES_NAME,
         payload: json.data,
@@ -47,7 +54,7 @@ export function getDiets() {
 export function filteredByDiet(diet) {
   return async function (dispatch) {
     try {
-      var json = await axios.get(`/recipes?diet=${diet}`);
+      let json = await axios.get(`/recipes?diet=${diet}`);
       return dispatch({
         type: FILTERED_BY_DIET,
         payload: json.data,
@@ -76,5 +83,11 @@ export function createdFilter(payload) {
     } catch (error) {
       console.log(error);
     }
+  };
+}
+
+export function getRecipesStart() {
+  return {
+    type: GET_RECIPES_START,
   };
 }
