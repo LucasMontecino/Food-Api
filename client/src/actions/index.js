@@ -53,6 +53,7 @@ export function getDiets() {
 
 export function filteredByDiet(diet) {
   return async function (dispatch) {
+    dispatch(getRecipesStart());
     try {
       let json = await axios.get(`/recipes?diet=${diet}`);
       return dispatch({

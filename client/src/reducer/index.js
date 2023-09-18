@@ -45,6 +45,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         recipes: action.payload,
+        isLoading: false,
       };
     case ALPHABETICAL_ORDER:
       let sortedRecipes =
