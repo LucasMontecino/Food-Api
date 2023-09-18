@@ -13,8 +13,8 @@
 }
 
 .loading_image {
-    width: 100px;
-    height: 100px;
+    width: 400px;
+    height: 400px;
     background-image: url("https://media.giphy.com/media/83xGKHnlQa5yw/giphy.gif");
     background-size: cover;
 }
