@@ -128,8 +128,10 @@ export default function Home() {
 
       {/* Contenedor principal del Home  */}
       <div className={style.btnDisplay}>
-        <CustomButton text="Prev" onClick={prevPage} />
-        <CustomButton text="Next" onClick={nextPage} />
+        {currentPage > 0 && <CustomButton text="Prev" onClick={prevPage} />}
+        {currentPage + 6 < allRecipes.length && (
+          <CustomButton text="Next" onClick={nextPage} />
+        )}
       </div>
       <div className={style.grid_container}>
         {currentRecipes()?.map((el) => {
