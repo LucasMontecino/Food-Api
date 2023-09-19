@@ -9,7 +9,9 @@
 .loading_container p {
     font-size: 1.5rem;
     font-weight: bold;
-    margin-bottom: 1rem;
+    margin-top: 1rem;
+    color: #F0F7F5;
+    text-shadow: #FC0 1px 0 10px;
 }
 
 .loading_image {
@@ -17,4 +19,5 @@
     height: 400px;
     background-image: url("https://media.giphy.com/media/83xGKHnlQa5yw/giphy.gif");
     background-size: cover;
+    border-radius: 25px;
 }

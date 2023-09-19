@@ -7,6 +7,7 @@ import {
   GET_RECIPES,
   GET_RECIPES_NAME,
   GET_RECIPES_START,
+  GET_RECIPE_DETAIL,
 } from "../reducer";
 
 export function getRecipes() {
@@ -79,6 +80,21 @@ export function createdFilter(payload) {
       let json = await axios.get(`/recipes?created=${payload}`);
       return dispatch({
         type: CREATED_FILTER,
+        payload: json.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function getRecipeDetail(id) {
+  return async function (dispatch) {
+    dispatch(getRecipesStart());
+    try {
+      let json = await axios.get(`/recipes/${id}`);
+      return dispatch({
+        type: GET_RECIPE_DETAIL,
         payload: json.data,
       });
     } catch (error) {

@@ -17,7 +17,6 @@ const getApiInfo = async () => {
       summary: el.summary,
       diets: el.diets.map((ele) => ele),
       healthScore: el.healthScore,
-      // steps: el.analyzedInstructions[0] ? el.analyzedInstructions[0].steps.map(ele => ele.step) : 'No contiene pasos a seguir',
       image: el.image,
     };
   });

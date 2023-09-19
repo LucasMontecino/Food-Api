@@ -5,7 +5,7 @@ const Loading = () => {
   return (
     <div className={style.loading_container}>
       <div className={style.loading_image}></div>
-      <p>Loading...</p>
+      <p>Loading Foods...</p>
     </div>
   );
 };

@@ -5,11 +5,13 @@ export const FILTERED_BY_DIET = "FILTERED_BY_DIET";
 export const ALPHABETICAL_ORDER = "ALPHABETICAL_ORDER";
 export const CREATED_FILTER = "CREATED_FILTER";
 export const GET_RECIPES_START = "GET_RECIPES_START";
+export const GET_RECIPE_DETAIL = "GET_RECIPE_DETAIL";
 
 const initialState = {
   recipes: [],
   diets: [],
   filteredRecipes: [],
+  recipeDetail: {},
   isLoading: false,
 };
 
@@ -60,6 +62,13 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         recipes: action.payload,
+      };
+
+    case GET_RECIPE_DETAIL:
+      return {
+        ...state,
+        recipeDetail: action.payload,
+        isLoading: false,
       };
     default:
       return state;

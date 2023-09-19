@@ -1,0 +1,58 @@
+.recipe_detail {
+    display: flex;
+    margin: 20px;
+    border: 1px solid #ddd;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    height: 50vh;
+}
+
+.recipe_detail img {
+    width: 400px;
+    height: 400px;
+    margin-right: 20px;
+    border-radius: 8px;
+}
+
+.recipe_info {
+    flex: 1;
+}
+
+.recipe_name {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.recipe_summary {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.diet_types {
+    margin-top: 10px;
+}
+
+.diet_label {
+    font-weight: bold;
+    margin: 0;
+}
+
+.diet_list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.diet_item {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.healthScore {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}
