@@ -1,0 +1,13 @@
+.selectContainer {
+    margin: 4px 10px 0 10px;
+}
+
+.select {
+    padding: 4px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: #f8f8f8;
+    color: #333;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}

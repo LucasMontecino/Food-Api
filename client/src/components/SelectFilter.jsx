@@ -1,4 +1,5 @@
 import React from "react";
+import style from "./SelectFilter.module.css";
 
 const SelectFilter = ({ value, onChange, array, textDefault, keyword }) => {
   let defaultArray = [
@@ -9,40 +10,56 @@ const SelectFilter = ({ value, onChange, array, textDefault, keyword }) => {
     { name: "Api", value: "api" },
     { name: "Created", value: "db" },
   ];
+
+  const renderAlphabeticalSelect = () => {
+    return (
+      <select className={style.select} value={value} onChange={onChange}>
+        <option value="" disabled>
+          {textDefault}
+        </option>
+        {defaultArray.map((el) => (
+          <option value={el.value} key={el.name}>
+            {el.name}
+          </option>
+        ))}
+      </select>
+    );
+  };
+
+  const renderCreatedSelect = () => {
+    return (
+      <select className={style.select} value={value} onChange={onChange}>
+        <option value="">{textDefault}</option>
+        {defaultArray2.map((el) => (
+          <option value={el.value} key={el.name}>
+            {el.name}
+          </option>
+        ))}
+      </select>
+    );
+  };
+
+  const renderNormalSelect = () => {
+    return (
+      <select className={style.select} value={value} onChange={onChange}>
+        <option value="" disabled>
+          {textDefault}
+        </option>
+        {array?.map((el) => (
+          <option value={el.name} key={el.id}>
+            {el.name[0].toUpperCase() + el.name.slice(1)}
+          </option>
+        ))}
+      </select>
+    );
+  };
   return (
-    <div>
-      {keyword === "alphabetical" ? (
-        <select value={value} onChange={onChange}>
-          <option value="" disabled>
-            {textDefault}
-          </option>
-          {defaultArray.map((el) => (
-            <option value={el.value} key={el.name}>
-              {el.name}
-            </option>
-          ))}
-        </select>
-      ) : keyword === "created" ? (
-        <select value={value} onChange={onChange}>
-          <option value="">{textDefault}</option>
-          {defaultArray2.map((el) => (
-            <option value={el.value} key={el.name}>
-              {el.name}
-            </option>
-          ))}
-        </select>
-      ) : (
-        <select value={value} onChange={onChange}>
-          <option value="" disabled>
-            {textDefault}
-          </option>
-          {array?.map((el) => (
-            <option value={el.name} key={el.id}>
-              {el.name}
-            </option>
-          ))}
-        </select>
-      )}
+    <div className={style.selectContainer}>
+      {keyword === "alphabetical" && renderAlphabeticalSelect()}
+      {keyword === "created" && renderCreatedSelect()}
+      {keyword !== "alphabetical" &&
+        keyword !== "created" &&
+        renderNormalSelect()}
     </div>
   );
 };

@@ -10,6 +10,8 @@ h3 {
     border: 5px solid #2c3e50;
     height: 420px;
     transition-duration: 0.5s;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .cardStyle:hover {
@@ -23,21 +25,41 @@ h3 {
     height: 250px;
     border-radius: 10px;
     object-fit: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .main_img img {
-    height: 230px;
-    width: 320px;
+    max-height: 100%;
+    max-width: 100%;
     border-radius: 10px;
     border: 3px solid #F4D03F;
     object-fit: cover;
 }
 
+.card_title {
+    color: #0b3054;
+    font-size: 1.5rem;
+    margin: 10px 0;
+    text-align: center;
+}
+
 .flex_container {
-    display: grid;
-    grid-template-columns: auto auto;
-    justify-content: space-around;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     margin-top: 5px;
-    color: antiquewhite;
-    font-variant-caps: small-caps;
+}
+
+.diet_item {
+    background-color: #3498db;
+    color: white;
+    border-radius: 5px;
+    padding: 4px 10px;
+    margin: 3px;
+    font-size: 0.9rem;
+    text-align: center;
+    white-space: nowrap;
 }

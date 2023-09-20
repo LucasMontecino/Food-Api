@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import style from "./SearchBar.module.css";
 import { CustomButton } from "./CustomButton";
 import { getRecipesName } from "../actions";
 
 const SearchBar = ({ setCurrentPage }) => {
   const dispatch = useDispatch();
+  const error = useSelector((state) => state.error);
   const [name, setName] = useState("");
 
   function handleInputChange(e) {
@@ -31,11 +32,15 @@ const SearchBar = ({ setCurrentPage }) => {
     setName("");
   }
 
+  if (error) {
+    return <div className={style.errorMessage}>{error}</div>;
+  }
+
   return (
     <div className={style.searchBar}>
       <input
         type="text"
-        value={name}
+        value={name && name[0].toUpperCase() + name.slice(1)}
         onChange={handleInputChange}
         onKeyUp={handleKeyUp}
         placeholder="Enter recipe name..."
@@ -44,6 +49,7 @@ const SearchBar = ({ setCurrentPage }) => {
         onClick={handleSubmit}
         text={<FontAwesomeIcon icon={faSearch} />}
       />
+      {/* {error && <div className={style.errorMessage}>{error}</div>} */}
     </div>
   );
 };

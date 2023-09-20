@@ -6,6 +6,7 @@ export const ALPHABETICAL_ORDER = "ALPHABETICAL_ORDER";
 export const CREATED_FILTER = "CREATED_FILTER";
 export const GET_RECIPES_START = "GET_RECIPES_START";
 export const GET_RECIPE_DETAIL = "GET_RECIPE_DETAIL";
+export const GET_RECIPES_NAME_ERROR = "GET_RECIPES_NAME_ERROR";
 
 const initialState = {
   recipes: [],
@@ -13,6 +14,7 @@ const initialState = {
   filteredRecipes: [],
   recipeDetail: {},
   isLoading: false,
+  error: null,
 };
 
 function rootReducer(state = initialState, action) {
@@ -68,6 +70,13 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         recipeDetail: action.payload,
+        isLoading: false,
+      };
+
+    case GET_RECIPES_NAME_ERROR:
+      return {
+        ...state,
+        error: action.payload,
         isLoading: false,
       };
     default:

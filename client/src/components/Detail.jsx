@@ -36,13 +36,13 @@ const Detail = (props) => {
                 {recipeDetail.diets && recipeDetail.diets[0].name
                   ? recipeDetail.diets.map((diet) => (
                       <li key={diet.name} className={style.diet_item}>
-                        {diet.name}
+                        {diet.name[0].toUpperCase() + diet.name.slice(1)}
                       </li>
                     ))
                   : recipeDetail.diets &&
                     recipeDetail.diets.map((diet) => (
                       <li key={diet} className={style.diet_item}>
-                        {diet}
+                        {diet[0].toUpperCase() + diet.slice(1)}
                       </li>
                     ))}
               </ul>

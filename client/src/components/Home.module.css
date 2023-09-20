@@ -5,6 +5,7 @@ body {
     /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #2c3e50, #bdc3c7);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 h1 {
@@ -35,7 +36,7 @@ h1::after {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 68px;
+    height: 80px;
     margin-bottom: 20px;
     position: fixed;
     top: 0;

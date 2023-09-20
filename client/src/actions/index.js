@@ -6,6 +6,7 @@ import {
   GET_DIETS,
   GET_RECIPES,
   GET_RECIPES_NAME,
+  GET_RECIPES_NAME_ERROR,
   GET_RECIPES_START,
   GET_RECIPE_DETAIL,
 } from "../reducer";
@@ -31,12 +32,27 @@ export function getRecipesName(name) {
     dispatch(getRecipesStart());
     try {
       let json = await axios.get("/recipes?name=" + name);
-      return dispatch({
-        type: GET_RECIPES_NAME,
-        payload: json.data,
-      });
+
+      if (json.data) {
+        return dispatch({
+          type: GET_RECIPES_NAME,
+          payload: json.data,
+        });
+      } else {
+        return dispatch({
+          type: GET_RECIPES_NAME_ERROR,
+          payload: "No se encontraron recetas con ese nombre.",
+        });
+      }
     } catch (error) {
-      console.log(error);
+      if (error.response && error.response.status === 404) {
+        return dispatch({
+          type: GET_RECIPES_NAME_ERROR,
+          payload: "No se encontraron recetas con ese nombre.",
+        });
+      } else {
+        console.log(error);
+      }
     }
   };
 }
