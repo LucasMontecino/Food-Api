@@ -14,7 +14,6 @@ import { CustomButton } from "./CustomButton";
 import SelectFilter from "./SelectFilter";
 import SearchBar from "./SearchBar";
 import Loading from "./Loading";
-import image from "../images/Food Api.png";
 // import { SearchBar } from "./SearchBar";
 
 export default function Home() {
