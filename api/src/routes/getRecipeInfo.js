@@ -7,20 +7,14 @@ const { API_KEY } = process.env;
 const apiUrl = require("../../complexSearch.json");
 
 const getApiInfo = async () => {
-  // const apiUrl = await axios.get(
-  //   `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=50`
-  // );
-  const apiInfo = apiUrl.results.map((el) => {
-    return {
-      id: el.id,
-      name: el.title,
-      summary: el.summary,
-      diets: el.diets.map((ele) => ele),
-      healthScore: el.healthScore,
-      image: el.image,
-    };
-  });
-  return apiInfo;
+  return apiUrl.results.map((el) => ({
+    id: el.id,
+    name: el.title,
+    summary: el.summary,
+    diets: el.diets.map((ele) => ele),
+    healthScore: el.healthScore,
+    image: el.image,
+  }));
 };
 
 const getDbInfo = async () => {
@@ -28,18 +22,19 @@ const getDbInfo = async () => {
     include: {
       model: Diet,
       attributes: ["name"],
-      through: {
-        attributes: [],
-      },
+      through: { attributes: [] },
     },
   });
 };
 
 const getAllRecipes = async () => {
-  const apiInfo = await getApiInfo();
-  const dbInfo = await getDbInfo();
-  const infoTotal = apiInfo.concat(dbInfo);
-  return infoTotal;
+  try {
+    const [apiInfo, dbInfo] = await Promise.all([getApiInfo(), getDbInfo()]);
+    const infoTotal = apiInfo.concat(dbInfo);
+    return infoTotal;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 recipeRoute.get("/", async (req, res) => {
@@ -86,6 +81,19 @@ recipeRoute.get("/:id", async (req, res) => {
         ? res.json(recipe)
         : res.status(404).json("No existe receta con ese id");
     }
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+recipeRoute.delete("/:id", async (req, res) => {
+  let { id } = req.params;
+  try {
+    let recipe = await Recipe.findByPk(id);
+    await Recipe.destroy({
+      where: { name: recipe.name },
+    });
+    res.status(200).json(`Se elimino la receta ${recipe.name}`);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

@@ -7,6 +7,7 @@ h3 {
 }
 
 .cardStyle {
+    background-color: #F5F5F5;
     border: 5px solid #2c3e50;
     height: 420px;
     transition-duration: 0.5s;
@@ -33,9 +34,15 @@ h3 {
 .main_img img {
     max-height: 100%;
     max-width: 100%;
-    border-radius: 10px;
-    border: 3px solid #F4D03F;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    padding: 5px;
     object-fit: cover;
+    transition-duration: 0.3s;
+}
+
+.main_img img:hover {
+    box-shadow: 0 0 2px 1px #FFD700;
 }
 
 .card_title {
@@ -54,12 +61,13 @@ h3 {
 }
 
 .diet_item {
-    background-color: #3498db;
-    color: white;
+    background-color: #FFD700;
+    color: #fff;
     border-radius: 5px;
     padding: 4px 10px;
     margin: 3px;
-    font-size: 0.9rem;
+    font-size: 1rem;
     text-align: center;
     white-space: nowrap;
+    font-style: bold;
 }

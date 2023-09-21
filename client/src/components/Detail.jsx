@@ -25,31 +25,33 @@ const Detail = (props) => {
   return (
     <div>
       {recipeDetail && (
-        <div className={style.recipe_detail}>
-          <img src={recipeDetail.image} alt={recipeDetail.name} />
-          <div className={style.recipe_info}>
-            <h2 className={style.recipe_name}>{recipeDetail.name}</h2>
-            <p className={style.recipe_summary}>{recipeDetail.summary}</p>
-            <div className={style.diet_types}>
-              <p className={style.diet_label}>Diets:</p>
-              <ul className={style.diet_list}>
-                {recipeDetail.diets && recipeDetail.diets[0].name
-                  ? recipeDetail.diets.map((diet) => (
-                      <li key={diet.name} className={style.diet_item}>
-                        {diet.name[0].toUpperCase() + diet.name.slice(1)}
-                      </li>
-                    ))
-                  : recipeDetail.diets &&
-                    recipeDetail.diets.map((diet) => (
-                      <li key={diet} className={style.diet_item}>
-                        {diet[0].toUpperCase() + diet.slice(1)}
-                      </li>
-                    ))}
-              </ul>
+        <div className={style.main_container}>
+          <div className={style.recipe_detail}>
+            <img src={recipeDetail.image} alt={recipeDetail.name} />
+            <div className={style.recipe_info}>
+              <h2 className={style.recipe_name}>{recipeDetail.name}</h2>
+              <p className={style.recipe_summary}>{recipeDetail.summary}</p>
+              <div className={style.diet_types}>
+                <p className={style.diet_label}>Diets:</p>
+                <ul className={style.diet_list}>
+                  {recipeDetail.diets && recipeDetail.diets[0].name
+                    ? recipeDetail.diets.map((diet) => (
+                        <li key={diet.name} className={style.diet_item}>
+                          {diet.name[0].toUpperCase() + diet.name.slice(1)}
+                        </li>
+                      ))
+                    : recipeDetail.diets &&
+                      recipeDetail.diets.map((diet) => (
+                        <li key={diet} className={style.diet_item}>
+                          {diet[0].toUpperCase() + diet.slice(1)}
+                        </li>
+                      ))}
+                </ul>
+              </div>
+              <p className={style.healthScore}>
+                Health Score: {recipeDetail.healthScore}
+              </p>
             </div>
-            <p className={style.healthScore}>
-              Health Score: {recipeDetail.healthScore}
-            </p>
           </div>
         </div>
       )}

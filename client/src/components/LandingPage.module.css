@@ -11,23 +11,15 @@
     background-size: cover;
 }
 
+.showcase {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .showcase h1 {
     margin-bottom: 10px;
     padding-top: 10px;
-}
-
-.showcase button {
-    width: 200px;
-    height: 30px;
-    border-radius: 10px;
-    color: #E4F0FB;
-    background-color: #0B3054;
-    border-color: #0B3054;
-    transition-duration: 0.6s;
-    cursor: pointer;
-}
-
-.showcase button:hover {
-    background-color: #225B95;
-    border-color: #225B95;
+    color: #0B3054;
 }

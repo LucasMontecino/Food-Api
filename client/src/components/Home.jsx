@@ -96,7 +96,9 @@ export default function Home() {
           />
         </div>
 
-        <h1 className={style.main_title}>FOOD ENCYCLOPEDIA</h1>
+        <div className={style.main_title}>
+          <h1>FOOD ENCYCLOPEDIA</h1>
+        </div>
 
         <div className={style.main_header_filtersearchbar}>
           {/* Filtros */}
