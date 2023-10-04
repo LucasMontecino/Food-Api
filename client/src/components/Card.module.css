@@ -9,10 +9,14 @@ h3 {
 .cardStyle {
     background-color: #F5F5F5;
     border: 5px solid #2c3e50;
-    height: 420px;
+    min-height: 450px;
     transition-duration: 0.5s;
     border-radius: 10px;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .cardStyle:hover {
@@ -58,6 +62,7 @@ h3 {
     justify-content: center;
     align-items: center;
     margin-top: 5px;
+    width: 400px;
 }
 
 .diet_item {

@@ -3,6 +3,7 @@ import style from "./Detail.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getRecipeDetail } from "../actions";
 import Loading from "./Loading";
+import { CustomButton } from "./CustomButton";
 
 const Detail = (props) => {
   const recipeId = props.match.params.id;
@@ -18,16 +19,24 @@ const Detail = (props) => {
   const recipeDetail = useSelector((state) => state.recipeDetail);
   const isLoading = useSelector((state) => state.isLoading);
 
+  function handleHome() {
+    window.location.href = "/home";
+  }
+
   if (isLoading) {
     return <Loading />;
   }
 
   return (
     <div>
+      <div className={style.button_container}>
+        <CustomButton text={"Return to Home"} onClick={handleHome} />
+      </div>
       {recipeDetail && (
         <div className={style.main_container}>
           <div className={style.recipe_detail}>
             <img src={recipeDetail.image} alt={recipeDetail.name} />
+
             <div className={style.recipe_info}>
               <h2 className={style.recipe_name}>{recipeDetail.name}</h2>
               <p className={style.recipe_summary}>{recipeDetail.summary}</p>

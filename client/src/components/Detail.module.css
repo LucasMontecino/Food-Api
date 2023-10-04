@@ -1,25 +1,26 @@
 .main_container {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     height: 100vh;
+    margin-top: 30px;
 }
 
 .recipe_detail {
     display: flex;
     justify-content: center;
-    margin: 20px auto;
-    border: 5px solid #2c3e50;
+    border: 10px solid #2c3e50;
     padding: 20px;
     background-color: #f5f5f5;
-    border-radius: 8px;
-    height: 50vh;
-    width: 70%;
+    border-radius: 4px;
+    min-height: 200px;
+    min-width: 1200px;
 }
 
+
 .recipe_detail img {
-    max-width: 70%;
-    height: auto;
+    width: 100%;
+    object-fit: cover;
     margin-right: 20px;
     border-radius: 8px;
 }
@@ -63,11 +64,11 @@
 .diet_list {
     list-style: none;
     padding: 0;
-    margin: 10px 0;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    margin: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 10px;
-
 }
 
 .diet_item {
@@ -76,7 +77,7 @@
     background-color: #FFA500;
     color: #fff;
     border-radius: 5px;
-    padding: 4px 10px;
+    padding: 4px 20px;
 }
 
 .healthScore {
@@ -84,4 +85,8 @@
     font-size: 18px;
     font-weight: bold;
     margin-top: 10px;
+}
+
+.button_container {
+    margin-top: 30px;
 }
