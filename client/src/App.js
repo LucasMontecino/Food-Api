@@ -4,6 +4,7 @@ import LandingPage from "./components/LandingPage";
 import Home from "./components/Home";
 import axios from "axios";
 import Detail from "./components/Detail";
+import RecipeCreate from "./components/RecipeCreate";
 
 axios.defaults.baseURL = "https://food-api-server.onrender.com";
 // axios.defaults.baseURL = "http://localhost:3001";
@@ -16,6 +17,7 @@ function App() {
           <Route exact path="/" component={LandingPage}></Route>
           <Route exact path="/home" component={Home}></Route>
           <Route exact path="/home/:id" component={Detail}></Route>
+          <Route exact path="/create" component={RecipeCreate}></Route>
         </Switch>
       </div>
     </BrowserRouter>

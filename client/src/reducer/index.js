@@ -7,6 +7,7 @@ export const CREATED_FILTER = "CREATED_FILTER";
 export const GET_RECIPES_START = "GET_RECIPES_START";
 export const GET_RECIPE_DETAIL = "GET_RECIPE_DETAIL";
 export const GET_RECIPES_NAME_ERROR = "GET_RECIPES_NAME_ERROR";
+export const POST_RECIPE = "POST_RECIPE";
 
 const initialState = {
   recipes: [],
@@ -79,6 +80,12 @@ function rootReducer(state = initialState, action) {
         error: action.payload,
         isLoading: false,
       };
+
+    case POST_RECIPE:
+      return {
+        ...state,
+      };
+
     default:
       return state;
   }

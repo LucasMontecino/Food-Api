@@ -124,3 +124,10 @@ export function getRecipesStart() {
     type: GET_RECIPES_START,
   };
 }
+
+export function postRecipe(payload) {
+  return async function (dispatch) {
+    const response = axios.post("/recipes", payload);
+    return response;
+  };
+}

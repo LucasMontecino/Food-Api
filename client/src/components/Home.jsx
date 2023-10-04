@@ -14,7 +14,6 @@ import { CustomButton } from "./CustomButton";
 import SelectFilter from "./SelectFilter";
 import SearchBar from "./SearchBar";
 import Loading from "./Loading";
-// import { SearchBar } from "./SearchBar";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -87,7 +86,7 @@ export default function Home() {
       {/* Main Header */}
       <header className={style.main_header}>
         <div className={style.main_header_left}>
-          <Link to="/recipes">
+          <Link to="/create">
             <CustomButton text="Crear Nueva Receta" />
           </Link>
           <CustomButton
