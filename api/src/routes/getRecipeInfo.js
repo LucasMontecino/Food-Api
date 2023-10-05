@@ -5,12 +5,13 @@ const { Router } = require("express");
 const recipeRoute = Router();
 const { API_KEY } = process.env;
 const apiUrl = require("../../complexSearch.json");
+const formatRecipeDescription = require("../functions/formatRecipeDescription");
 
 const getApiInfo = async () => {
   return apiUrl.results.map((el) => ({
     id: el.id,
     name: el.title,
-    summary: el.summary,
+    summary: formatRecipeDescription(el.summary),
     diets: el.diets.map((ele) => ele),
     healthScore: el.healthScore,
     image: el.image,

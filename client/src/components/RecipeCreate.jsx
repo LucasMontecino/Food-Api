@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getDiets, postRecipe } from "../actions";
 import SelectFilter from "./SelectFilter";
@@ -58,6 +58,7 @@ const RecipeCreate = () => {
   }
 
   function handleSelect(e) {
+    setOrderDiets(e.target.value);
     if (!input.diets.includes(e.target.value)) {
       setInput({
         ...input,
@@ -159,6 +160,22 @@ const RecipeCreate = () => {
           />
         </div>
 
+        <div className={style.container}>
+          <h2 className={style.diet_title}>Diets</h2>
+
+          <div className={style.diet_container}>
+            {input.diets.map((el) => (
+              <div
+                key={el}
+                onClick={() => dietHandleDelete(el)}
+                className={style.diet_item_container}
+              >
+                <p className={style.diet_item}>{el}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <div className={style.buttom_container}>
           <CustomButton
             disabled={button}
@@ -168,22 +185,6 @@ const RecipeCreate = () => {
           />
         </div>
       </form>
-
-      <div className={style.container}>
-        <h2 className={style.diet_title}>Diets</h2>
-
-        <div className={style.diet_container}>
-          {input.diets.map((el) => (
-            <div
-              key={el}
-              onClick={() => dietHandleDelete(el)}
-              className={style.diet_item_container}
-            >
-              <p className={style.diet_item}>{el}</p>
-            </div>
-          ))}
-        </div>
-      </div>
     </div>
   );
 };

@@ -11,11 +11,12 @@
     min-height: 300px;
     width: 600px;
     padding: 10px 20px 20px;
-    border: 10px solid goldenrod;
+    border: 10px solid #2c3e50;
     border-radius: 4px;
 }
 
 .form_container h1 {
+    color: #0b3054;
     margin-bottom: 5px;
 }
 
@@ -54,7 +55,9 @@
 }
 
 .diet_title {
-    margin-top: 15px;
+    color: #0b3054;
+    margin-top: 5px;
+    font-size: 32px;
 }
 
 .diet_container {

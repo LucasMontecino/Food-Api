@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getRecipeDetail } from "../actions";
 import Loading from "./Loading";
 import { CustomButton } from "./CustomButton";
+import { Link } from "react-router-dom";
 
 const Detail = (props) => {
   const recipeId = props.match.params.id;
@@ -19,10 +20,6 @@ const Detail = (props) => {
   const recipeDetail = useSelector((state) => state.recipeDetail);
   const isLoading = useSelector((state) => state.isLoading);
 
-  function handleHome() {
-    window.location.href = "/home";
-  }
-
   if (isLoading) {
     return <Loading />;
   }
@@ -30,7 +27,9 @@ const Detail = (props) => {
   return (
     <div>
       <div className={style.button_container}>
-        <CustomButton text={"Return to Home"} onClick={handleHome} />
+        <Link to={`/home`}>
+          <CustomButton text={"Return to Home"} />
+        </Link>
       </div>
       {recipeDetail && (
         <div className={style.main_container}>

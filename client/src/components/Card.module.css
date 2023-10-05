@@ -9,7 +9,7 @@ h3 {
 .cardStyle {
     background-color: #F5F5F5;
     border: 5px solid #2c3e50;
-    min-height: 450px;
+    min-height: 500px;
     transition-duration: 0.5s;
     border-radius: 10px;
     overflow: hidden;
@@ -53,6 +53,7 @@ h3 {
     color: #0b3054;
     font-size: 1.5rem;
     margin: 10px 0;
+    padding: 0 20px;
     text-align: center;
 }
 
