@@ -6,7 +6,7 @@ import axios from "axios";
 import Detail from "./components/Detail";
 import RecipeCreate from "./components/RecipeCreate";
 
-axios.defaults.baseURL = "https://food-api-server.onrender.com";
+axios.defaults.baseURL = "https://food-api-buyp.vercel.app";
 // axios.defaults.baseURL = "http://localhost:3001";
 
 function App() {
