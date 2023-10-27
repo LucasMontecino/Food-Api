@@ -29,3 +29,11 @@ conn.sync({ force: false }).then(() => {
     console.log(`%s listening at ${port}`); // eslint-disable-line no-console
   });
 });
+
+const app = express();
+
+app.use(express.json());
+app.use(cors());
+app.use(router);
+
+export default app;
