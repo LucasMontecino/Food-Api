@@ -22,7 +22,6 @@ export default function Home() {
   const isLoading = useSelector((state) => state.isLoading);
 
   const [currentPage, setCurrentPage] = useState(0);
-  console.log(currentPage);
 
   const [order, setOrder] = useState("");
   const [orderDiets, setOrderDiets] = useState("");

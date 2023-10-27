@@ -6,8 +6,8 @@ import axios from "axios";
 import Detail from "./components/Detail";
 import RecipeCreate from "./components/RecipeCreate";
 
-axios.defaults.baseURL = "https://api-sigma-gold.vercel.app";
-// axios.defaults.baseURL = "http://localhost:3001";
+// axios.defaults.baseURL = "https://api-sigma-gold.vercel.app";
+axios.defaults.baseURL = "http://localhost:3001";
 
 function App() {
   return (
