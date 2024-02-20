@@ -93,3 +93,25 @@
 .return_container {
     margin-bottom: 20px;
 }
+
+@media only screen and (max-width: 425px) {
+    .form_container h1 {
+        font-size: 14px;
+    }
+
+    .form_container input {
+        width: 75%;
+    }
+
+    .form_container textarea {
+        width: 75%;
+    }
+
+    .diet_title {
+        font-size: 14px;
+    }
+
+    .diet_container {
+        flex-direction: column;
+    }
+}
