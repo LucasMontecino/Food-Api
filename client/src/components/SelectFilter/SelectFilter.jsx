@@ -14,9 +14,7 @@ const SelectFilter = ({ value, onChange, array, textDefault, keyword }) => {
   const renderAlphabeticalSelect = () => {
     return (
       <select className={style.select} value={value} onChange={onChange}>
-        <option value="" disabled>
-          {textDefault}
-        </option>
+        <option value="">{textDefault}</option>
         {defaultArray.map((el) => (
           <option value={el.value} key={el.name}>
             {el.name}
@@ -42,9 +40,7 @@ const SelectFilter = ({ value, onChange, array, textDefault, keyword }) => {
   const renderNormalSelect = () => {
     return (
       <select className={style.select} value={value} onChange={onChange}>
-        <option value="" disabled>
-          {textDefault}
-        </option>
+        <option value="">{textDefault}</option>
         {array?.map((el) => (
           <option value={el.name} key={el.id}>
             {el.name[0].toUpperCase() + el.name.slice(1)}

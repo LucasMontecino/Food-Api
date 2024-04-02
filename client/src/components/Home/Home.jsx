@@ -6,14 +6,14 @@ import {
   filteredByDiet,
   alphabeticalOrder,
   createdFilter,
-} from "../actions";
+} from "../../actions";
 import { Link } from "react-router-dom";
-import Card from "./Card";
+import Card from "../Card/Card";
 import style from "./Home.module.css";
-import { CustomButton } from "./CustomButton";
-import SelectFilter from "./SelectFilter";
-import SearchBar from "./SearchBar";
-import Loading from "./Loading";
+import { CustomButton } from "../CustomButton/CustomButton";
+import SelectFilter from "../SelectFilter/SelectFilter";
+import SearchBar from "../SearchBar/SearchBar";
+import Loading from "../Loading/Loading";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -86,6 +86,10 @@ export default function Home() {
     <>
       {/* Main Header */}
       <header className={style.main_header}>
+        <div className={style.main_title}>
+          <h1>FOOD ENCYCLOPEDIA</h1>
+        </div>
+
         <div className={style.main_header_left}>
           <Link to="/create">
             <CustomButton text="Crear Nueva Receta" />
@@ -96,13 +100,10 @@ export default function Home() {
           />
         </div>
 
-        <div className={style.main_title}>
-          <h1>FOOD ENCYCLOPEDIA</h1>
-        </div>
-
         <div className={style.main_header_filtersearchbar}>
           {/* Filtros */}
           <SearchBar setCurrentPage={setCurrentPage} />
+
           <div className={style.select_container}>
             <SelectFilter
               onChange={handleFilterAlphabeticalOrder}
@@ -110,7 +111,6 @@ export default function Home() {
               value={order}
               keyword={"alphabetical"}
             />
-
             <SelectFilter
               array={allDiets}
               onChange={handleFilterByDiets}

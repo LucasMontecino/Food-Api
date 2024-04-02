@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getDiets, postRecipe } from "../actions";
-import SelectFilter from "./SelectFilter";
-import { CustomButton } from "./CustomButton";
+import { getDiets, postRecipe } from "../../actions";
+import SelectFilter from "../SelectFilter/SelectFilter";
 import style from "./RecipeCreate.module.css";
+import { CustomButton } from "../CustomButton/CustomButton";
 
 function validate(input) {
   let errors = {};

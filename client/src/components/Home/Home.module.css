@@ -1,29 +1,20 @@
 body {
     background-color: #ccc;
-    width: 100%;
     min-height: 100vh;
 }
 
 .main_header {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
+    gap: 22px;
     height: 80px;
-    margin-bottom: 20px;
     position: fixed;
     top: 0;
     width: 100%;
     background-color: #FFA500;
     transition-duration: 0.5s;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-}
-
-.main_title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* margin-left: 90px; */
-    /* width: 600px; */
 }
 
 .main_title h1 {
@@ -33,7 +24,6 @@ body {
 .main_header_left {
     display: flex;
     gap: 20px;
-    /* margin-left: 20px; */
 }
 
 .main_header_filtersearchbar {
@@ -85,5 +75,10 @@ body {
 
     .btnDisplay {
         margin-top: 15rem;
+    }
+
+    .select_container {
+        flex-direction: column;
+        align-items: center;
     }
 }

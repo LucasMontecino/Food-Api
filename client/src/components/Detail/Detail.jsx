@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import style from "./Detail.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getRecipeDetail } from "../actions";
-import Loading from "./Loading";
-import { CustomButton } from "./CustomButton";
+import { getRecipeDetail } from "../../actions";
+import Loading from "../Loading/Loading";
 import { Link } from "react-router-dom";
+import { CustomButton } from "../CustomButton/CustomButton";
 
 const Detail = (props) => {
   const recipeId = props.match.params.id;
@@ -23,8 +23,6 @@ const Detail = (props) => {
   if (isLoading) {
     return <Loading />;
   }
-
-  console.log(recipeDetail);
 
   return (
     <div>

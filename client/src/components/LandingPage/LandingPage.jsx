@@ -1,6 +1,6 @@
 import React from "react";
-import { CustomButton } from "./CustomButton";
 import style from "./LandingPage.module.css";
+import { CustomButton } from "../CustomButton/CustomButton";
 
 export default function LandingPage() {
   function handleHome() {
