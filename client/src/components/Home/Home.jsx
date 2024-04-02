@@ -14,8 +14,10 @@ import { CustomButton } from "../CustomButton/CustomButton";
 import SelectFilter from "../SelectFilter/SelectFilter";
 import SearchBar from "../SearchBar/SearchBar";
 import Loading from "../Loading/Loading";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 export default function Home() {
+  const [theme, setTheme] = useLocalStorage("theme", "dark");
   const dispatch = useDispatch();
   const allRecipes = useSelector((state) => state.recipes);
   const allDiets = useSelector((state) => state.diets);
@@ -78,16 +80,24 @@ export default function Home() {
     setCurrentPage(0);
   };
 
+  function handleTheme() {
+    setTheme(theme === "dark" ? "light" : "dark");
+  }
+
   if (isLoading) {
     return <Loading />;
   }
 
+  console.log(theme);
+
   return (
-    <>
+    <div className={style.container} data-theme={theme}>
       {/* Main Header */}
       <header className={style.main_header}>
         <div className={style.main_title}>
-          <h1>FOOD ENCYCLOPEDIA</h1>
+          <Link to="/home">
+            <h1>FOOD API</h1>
+          </Link>
         </div>
 
         <div className={style.main_header_left}>
@@ -98,6 +108,7 @@ export default function Home() {
             text="Cargar todas las recetas"
             onClick={handleReload}
           />
+          <CustomButton text={"Cambiar Tema"} onClick={handleTheme} />
         </div>
 
         <div className={style.main_header_filtersearchbar}>
@@ -156,6 +167,6 @@ export default function Home() {
           );
         })}
       </div>
-    </>
+    </div>
   );
 }

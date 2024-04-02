@@ -3,7 +3,7 @@ a {
 }
 
 h3 {
-    color: #0B3054;
+
     width: 75%;
     text-align: center;
     text-overflow: ellipsis;
@@ -12,7 +12,7 @@ h3 {
 }
 
 .cardStyle {
-    background-color: #F5F5F5;
+    background-color: var(--background);
     border: 5px solid #2c3e50;
     width: 350px;
     height: 420px;
@@ -52,7 +52,7 @@ h3 {
 }
 
 .card_title {
-    color: #0b3054;
+    color: var(--text-secondary);
     font-size: 1.5rem;
     margin: 10px 0;
     padding: 0 20px;

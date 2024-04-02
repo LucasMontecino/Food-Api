@@ -6,6 +6,7 @@ export default function LandingPage() {
   function handleHome() {
     window.location.href = "/home";
   }
+
   return (
     <div className={style.background}>
       <div className={style.showcase}>
