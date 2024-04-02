@@ -9,11 +9,17 @@ export default function Card({ name, diets, image }) {
       </div>
       <h3 className={style.card_title}>{name}</h3>
       <div className={style.flex_container}>
-        {diets?.map((el) => (
-          <p key={el} className={style.diet_item}>
-            {el[0].toUpperCase() + el.slice(1)}
-          </p>
-        ))}
+        {diets && diets.length ? (
+          diets?.map((el, index) =>
+            index < 4 ? (
+              <p key={el} className={style.diet_item}>
+                {el[0].toUpperCase() + el.slice(1)}
+              </p>
+            ) : null
+          )
+        ) : (
+          <p className={style.diet_item}>There is no diets to show.</p>
+        )}
       </div>
     </div>
   );

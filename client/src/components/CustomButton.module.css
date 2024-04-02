@@ -1,13 +1,14 @@
 button {
-    width: auto;
     height: 30px;
+    width: 100%;
     border-radius: 10px;
     color: #E4F0FB;
     background-color: #4CAF50;
-    border: transparent;
+    border: none;
+    outline: none;
     transition-duration: 0.6s;
     cursor: pointer;
-    padding: 0 10px 0 10px;
+    padding: 0 12px;
     margin-left: 10px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
