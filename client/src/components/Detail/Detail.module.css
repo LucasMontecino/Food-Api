@@ -1,3 +1,17 @@
+:root {
+    --background: #ccc;
+    --text-primary: #212121;
+    --text-secondary: #2c3e50;
+    --box-shadow: rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] {
+    --background: #212121;
+    --text-primary: #ccc;
+    --text-secondary: #ccc;
+    --box-shadow: rgba(255, 255, 255, 0.9);
+}
+
 .main_container {
     display: flex;
     justify-content: center;
@@ -11,7 +25,7 @@
     justify-content: space-around;
     border: 10px solid #2c3e50;
     padding: 20px;
-    background-color: #f5f5f5;
+    background-color: var(--background);
     border-radius: 4px;
     min-height: 200px;
     min-width: 900px;
@@ -36,7 +50,7 @@
 }
 
 .recipe_name {
-    color: #0b3054;
+    color: var(--text-secondary);
     font-size: 24px;
     font-weight: bold;
     margin: 0;
@@ -60,7 +74,7 @@
 .diet_label {
     font-weight: bold;
     margin: 0;
-    color: #0b3054
+    color: var(--text-secondary)
 }
 
 .diet_list {
@@ -84,7 +98,7 @@
 }
 
 .healthScore {
-    color: #0b3054;
+    color: var(--text-secondary);
     font-size: 18px;
     font-weight: bold;
     margin-top: 10px;

@@ -5,9 +5,11 @@ import { getRecipeDetail } from "../../actions";
 import Loading from "../Loading/Loading";
 import { Link } from "react-router-dom";
 import { CustomButton } from "../CustomButton/CustomButton";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const Detail = (props) => {
   const recipeId = props.match.params.id;
+  const [theme, setTheme] = useLocalStorage("theme", "dark");
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -25,7 +27,7 @@ const Detail = (props) => {
   }
 
   return (
-    <div>
+    <div data-theme={theme}>
       <div className={style.button_container}>
         <Link to={`/home`}>
           <CustomButton text={"Return to Home"} />

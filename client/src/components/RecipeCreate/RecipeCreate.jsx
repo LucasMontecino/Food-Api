@@ -5,6 +5,7 @@ import { getDiets, postRecipe } from "../../actions";
 import SelectFilter from "../SelectFilter/SelectFilter";
 import style from "./RecipeCreate.module.css";
 import { CustomButton } from "../CustomButton/CustomButton";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 function validate(input) {
   let errors = {};
@@ -16,6 +17,7 @@ function validate(input) {
 }
 
 const RecipeCreate = () => {
+  const [theme, setTheme] = useLocalStorage("theme", "dark");
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -97,7 +99,7 @@ const RecipeCreate = () => {
   }, [dispatch]);
 
   return (
-    <div className={style.main_container}>
+    <div className={style.main_container} data-theme={theme}>
       <div className={style.return_container}>
         <CustomButton text={"Return to Home"} onClick={handleHome} />
       </div>
