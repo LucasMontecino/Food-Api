@@ -102,13 +102,13 @@ export default function Home() {
 
         <div className={style.main_header_left}>
           <Link to="/create">
-            <CustomButton text="Crear Nueva Receta" />
+            <CustomButton text="Create New Recipe" />
           </Link>
+          <CustomButton text="Reload Page" onClick={handleReload} />
           <CustomButton
-            text="Cargar todas las recetas"
-            onClick={handleReload}
+            text={theme === "dark" ? "Light Mode" : "Dark Mode"}
+            onClick={handleTheme}
           />
-          <CustomButton text={"Cambiar Tema"} onClick={handleTheme} />
         </div>
 
         <div className={style.main_header_filtersearchbar}>
@@ -125,14 +125,14 @@ export default function Home() {
             <SelectFilter
               array={allDiets}
               onChange={handleFilterByDiets}
-              textDefault={"Todas las Dietas"}
+              textDefault={"All Diets"}
               value={orderDiets}
             />
 
             <SelectFilter
               keyword={"created"}
               onChange={handleCreatedOrder}
-              textDefault={"Todas las Recetas"}
+              textDefault={"All Recipes"}
               value={createdOrder}
             />
           </div>

@@ -16,8 +16,9 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    height: 100vh;
+    min-height: 100vh;
     background-color: var(--background);
+    padding: 0 3rem;
 }
 
 .recipe_detail {
@@ -27,11 +28,8 @@
     padding: 20px;
     background-color: var(--background);
     border-radius: 4px;
-    min-height: 200px;
-    min-width: 900px;
     margin: 0 auto;
 }
-
 
 .recipe_detail img {
     width: 500px;
@@ -46,7 +44,7 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    width: 600px;
+    width: 60%;
 }
 
 .recipe_name {
@@ -64,7 +62,6 @@
     border-radius: 4px;
     text-align: left;
     color: #fff;
-    min-width: 600px;
 }
 
 .diet_types {
@@ -72,6 +69,7 @@
 }
 
 .diet_label {
+    text-align: center;
     font-weight: bold;
     margin: 0;
     color: var(--text-secondary)
@@ -112,4 +110,44 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+@media only screen and (max-width: 720px) {
+
+    .main_container {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .recipe_detail {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .recipe_info {
+        width: 100%;
+    }
+
+    .recipe_detail img {
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .diet_label {
+        text-align: center;
+    }
+
+    .recipe_name {
+        text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 50%;
+    }
+
+    .recipe_summary {
+        width: 100%;
+    }
 }
