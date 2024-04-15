@@ -30,9 +30,15 @@
 }
 
 .loading_image {
-    width: 400px;
-    height: 400px;
+    width: 200px;
+    height: 200px;
     background-image: url("https://media.giphy.com/media/83xGKHnlQa5yw/giphy.gif");
     background-size: cover;
     border-radius: 25px;
+}
+
+@media (max-width: 600px) {
+    .loading_container p {
+        font-size: 1rem;
+    }
 }
