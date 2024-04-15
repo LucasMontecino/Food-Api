@@ -42,8 +42,8 @@ const server = express();
 server.name = "API";
 
 const allowedOrigins = [
-  "http://localhost:3000",
   "https://food-api-iota.vercel.app",
+  "http://localhost:3000",
 ];
 
 server.use(cors());
