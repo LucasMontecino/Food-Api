@@ -6,8 +6,8 @@ import Home from "./components/Home/Home";
 import Detail from "./components/Detail/Detail";
 import RecipeCreate from "./components/RecipeCreate/RecipeCreate";
 
-axios.defaults.baseURL = "https://food-api-rest.vercel.app";
-// axios.defaults.baseURL = "http://localhost:3001";
+// axios.defaults.baseURL = "https://food-api-rest.vercel.app";
+axios.defaults.baseURL = "http://localhost:3001";
 
 function App() {
   return (
