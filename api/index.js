@@ -41,21 +41,13 @@ const server = express();
 
 server.name = "API";
 
-const allowedOrigins = [
-  "https://food-api-iota.vercel.app",
-  "http://localhost:3000",
-];
-
 server.use(cors());
 server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 server.use(bodyParser.json({ limit: "50mb" }));
 server.use(cookieParser());
 server.use(morgan("dev"));
 server.use((req, res, next) => {
-  const origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
-    res.header("Access-Control-Allow-Origin", origin); // update to match the domain you will make the request from
-  }
+  res.header("Access-Control-Allow-Origin", "https://food-api-iota.vercel.app");
   res.header("Access-Control-Allow-Credentials", "true");
   res.header(
     "Access-Control-Allow-Headers",
