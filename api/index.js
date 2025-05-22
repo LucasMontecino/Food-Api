@@ -21,7 +21,6 @@ require('./src/db.js');
 const { PORT } = require('./src/utils/config.js');
 const server = require('./app.js');
 const { conn } = require('./src/db.js');
-const { PORT } = process.env;
 const logger = require('./src/utils/logger.js');
 
 const port = PORT || 3001;
