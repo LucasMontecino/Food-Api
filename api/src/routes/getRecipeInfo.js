@@ -1,11 +1,8 @@
-require("dotenv").config();
-const axios = require("axios");
-const { Recipe, Diet } = require("../db");
-const { Router } = require("express");
+const { Recipe, Diet } = require('../db');
+const { Router } = require('express');
 const recipeRoute = Router();
-const { API_KEY } = process.env;
-const apiUrl = require("../../complexSearch.json");
-const formatRecipeDescription = require("../functions/formatRecipeDescription");
+const apiUrl = require('../../complexSearch.json');
+const formatRecipeDescription = require('../functions/formatRecipeDescription');
 
 const getApiInfo = async () => {
   return apiUrl.results.map((el) => ({
@@ -22,7 +19,7 @@ const getDbInfo = async () => {
   return await Recipe.findAll({
     include: {
       model: Diet,
-      attributes: ["name"],
+      attributes: ['name'],
       through: { attributes: [] },
     },
   });
@@ -30,7 +27,10 @@ const getDbInfo = async () => {
 
 const getAllRecipes = async () => {
   try {
-    const [apiInfo, dbInfo] = await Promise.all([getApiInfo(), getDbInfo()]);
+    const [apiInfo, dbInfo] = await Promise.all([
+      getApiInfo(),
+      getDbInfo(),
+    ]);
     const infoTotal = apiInfo.concat(dbInfo);
     return infoTotal;
   } catch (error) {
@@ -38,7 +38,7 @@ const getAllRecipes = async () => {
   }
 };
 
-recipeRoute.get("/", async (req, res) => {
+recipeRoute.get('/', async (req, res) => {
   let { name, diet, created } = req.query;
   try {
     const recipesTotal = await getAllRecipes();
@@ -48,22 +48,28 @@ recipeRoute.get("/", async (req, res) => {
       );
       recipeName.length
         ? res.json(recipeName)
-        : res.status(404).json("No hay receta con ese nombre");
+        : res
+            .status(404)
+            .json('No hay receta con ese nombre');
     } else if (diet) {
-      let filteredByDiet = recipesTotal.filter((el) => el.diets.includes(diet));
+      let filteredByDiet = recipesTotal.filter((el) =>
+        el.diets.includes(diet)
+      );
       filteredByDiet.length
         ? res.json(filteredByDiet)
-        : res.status(404).json("No hay receta con ese tipo de dieta");
+        : res
+            .status(404)
+            .json('No hay receta con ese tipo de dieta');
     } else if (created) {
       let filterByFlag =
-        created === "api"
+        created === 'api'
           ? recipesTotal.filter((el) => !el.createdInDb)
-          : created === "db"
+          : created === 'db'
           ? recipesTotal.filter((el) => el.createdInDb)
           : recipesTotal;
       filterByFlag.length
         ? res.status(200).json(filterByFlag)
-        : res.status(404).json("Algo no salió bien!");
+        : res.status(404).json('Algo no salió bien!');
     } else {
       res.json(recipesTotal);
     }
@@ -72,7 +78,7 @@ recipeRoute.get("/", async (req, res) => {
   }
 });
 
-recipeRoute.get("/:id", async (req, res) => {
+recipeRoute.get('/:id', async (req, res) => {
   let { id } = req.params;
   try {
     const recipesTotal = await getAllRecipes();
@@ -80,21 +86,25 @@ recipeRoute.get("/:id", async (req, res) => {
       let recipe = recipesTotal.find((el) => el.id == id);
       recipe
         ? res.json(recipe)
-        : res.status(404).json("No existe receta con ese id");
+        : res
+            .status(404)
+            .json('No existe receta con ese id');
     }
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 });
 
-recipeRoute.delete("/:id", async (req, res) => {
+recipeRoute.delete('/:id', async (req, res) => {
   let { id } = req.params;
   try {
     let recipe = await Recipe.findByPk(id);
     await Recipe.destroy({
       where: { name: recipe.name },
     });
-    res.status(200).json(`Se elimino la receta ${recipe.name}`);
+    res
+      .status(200)
+      .json(`Se elimino la receta ${recipe.name}`);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
