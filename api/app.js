@@ -40,3 +40,5 @@ server.use('/', routes);
 
 server.use(middleware.unknownEndpoint);
 server.use(middleware.errorHandler);
+
+module.exports = server;
