@@ -1,21 +1,21 @@
-import React, { useEffect } from "react";
-import style from "./Detail.module.css";
-import { useDispatch, useSelector } from "react-redux";
-import { getRecipeDetail } from "../../actions";
-import Loading from "../Loading/Loading";
-import { Link } from "react-router-dom";
-import { CustomButton } from "../CustomButton/CustomButton";
-import useLocalStorage from "../hooks/useLocalStorage";
+import React, { useEffect } from 'react';
+import style from './Detail.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { getRecipeDetail } from '../../actions';
+import Loading from '../Loading/Loading';
+import { Link } from 'react-router-dom';
+import { CustomButton } from '../CustomButton/CustomButton';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 const Detail = (props) => {
   const recipeId = props.match.params.id;
-  const [theme, setTheme] = useLocalStorage("theme", "dark");
+  const [theme] = useLocalStorage('theme', 'dark');
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getRecipeDetail(recipeId));
     return () => {
-      dispatch(getRecipeDetail(""));
+      dispatch(getRecipeDetail(null));
     };
   }, [dispatch, recipeId]);
 
@@ -30,7 +30,7 @@ const Detail = (props) => {
     <div data-theme={theme}>
       <div className={style.button_container}>
         <Link to={`/home`}>
-          <CustomButton text={"Return to Home"} />
+          <CustomButton text={'Return to Home'} />
         </Link>
       </div>
       {recipeDetail && (

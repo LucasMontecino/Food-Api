@@ -1,4 +1,3 @@
-import axios from "axios";
 import {
   ALPHABETICAL_ORDER,
   CREATED_FILTER,
@@ -9,17 +8,20 @@ import {
   GET_RECIPES_NAME_ERROR,
   GET_RECIPES_START,
   GET_RECIPE_DETAIL,
-} from "../reducer";
+} from '../reducer';
+
+import recipeService from '../services/recipeService';
+import dietService from '../services/dietService';
 
 export function getRecipes() {
   return async function (dispatch) {
     dispatch(getRecipesStart());
     try {
-      let json = await axios.get("/recipes");
+      const res = await recipeService.getAll();
 
       return dispatch({
         type: GET_RECIPES,
-        payload: json.data,
+        payload: res,
       });
     } catch (error) {
       console.log(error);
@@ -31,24 +33,23 @@ export function getRecipesName(name) {
   return async function (dispatch) {
     dispatch(getRecipesStart());
     try {
-      let json = await axios.get("/recipes?name=" + name);
-
-      if (json.data) {
+      const res = await recipeService.getByName(name);
+      if (res) {
         return dispatch({
           type: GET_RECIPES_NAME,
-          payload: json.data,
+          payload: res,
         });
       } else {
         return dispatch({
           type: GET_RECIPES_NAME_ERROR,
-          payload: "No se encontraron recetas con ese nombre.",
+          payload: 'No se encontraron recetas con ese nombre.',
         });
       }
     } catch (error) {
       if (error.response && error.response.status === 404) {
         return dispatch({
           type: GET_RECIPES_NAME_ERROR,
-          payload: "No se encontraron recetas con ese nombre.",
+          payload: 'No se encontraron recetas con ese nombre.',
         });
       } else {
         console.log(error);
@@ -59,11 +60,10 @@ export function getRecipesName(name) {
 
 export function getDiets() {
   return async function (dispatch) {
-    let json = await axios.get("/diets");
-
+    const res = await dietService.getAll();
     return dispatch({
       type: GET_DIETS,
-      payload: json.data,
+      payload: res,
     });
   };
 }
@@ -72,10 +72,10 @@ export function filteredByDiet(diet) {
   return async function (dispatch) {
     dispatch(getRecipesStart());
     try {
-      let json = await axios.get(`/recipes?diet=${diet}`);
+      const res = await recipeService.getByDiet(diet);
       return dispatch({
         type: FILTERED_BY_DIET,
-        payload: json.data,
+        payload: res,
       });
     } catch (error) {
       console.log(error);
@@ -93,10 +93,10 @@ export function alphabeticalOrder(payload) {
 export function createdFilter(payload) {
   return async function (dispatch) {
     try {
-      let json = await axios.get(`/recipes?created=${payload}`);
+      const res = await recipeService.getByCreatedFilter(payload);
       return dispatch({
         type: CREATED_FILTER,
-        payload: json.data,
+        payload: res,
       });
     } catch (error) {
       console.log(error);
@@ -108,11 +108,18 @@ export function getRecipeDetail(id) {
   return async function (dispatch) {
     dispatch(getRecipesStart());
     try {
-      let json = await axios.get(`/recipes/${id}`);
-      return dispatch({
-        type: GET_RECIPE_DETAIL,
-        payload: json.data,
-      });
+      if (id) {
+        const res = await recipeService.getDetail(id);
+        return dispatch({
+          type: GET_RECIPE_DETAIL,
+          payload: res,
+        });
+      } else {
+        return dispatch({
+          type: GET_RECIPE_DETAIL,
+          payload: null,
+        });
+      }
     } catch (error) {
       console.log(error);
     }
@@ -126,8 +133,8 @@ export function getRecipesStart() {
 }
 
 export function postRecipe(payload) {
-  return async function (dispatch) {
-    const response = axios.post("/recipes", payload);
-    return response;
+  return async function () {
+    const res = await recipeService.create(payload);
+    return res;
   };
 }

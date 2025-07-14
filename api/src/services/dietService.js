@@ -1,10 +1,8 @@
 const { Diet } = require('../db');
-const { Router } = require('express');
-const dietRoute = Router();
-const apiUrl = require('../../complexSearch.json');
+const recipesJSON = require('../../complexSearch.json');
 
 const getApiInfo = async () => {
-  const apiInfo = apiUrl.results.map((el) =>
+  const apiInfo = recipesJSON.results.map((el) =>
     el.diets.length ? el.diets : null
   );
   const apiFiltrado = apiInfo.filter((el) => el);
@@ -20,13 +18,6 @@ const getApiInfo = async () => {
   return allDiets;
 };
 
-dietRoute.get('/', async (req, res) => {
-  try {
-    const dietsTotal = await getApiInfo();
-    res.json(dietsTotal);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-});
-
-module.exports = dietRoute;
+module.exports = {
+  getApiInfo,
+};
