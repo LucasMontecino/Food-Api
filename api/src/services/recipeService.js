@@ -4,7 +4,7 @@ const formatRecipeDescription = require('../functions/formatRecipeDescription');
 
 const getApiInfo = async () => {
   return recipesJSON.results.map((el) => ({
-    id: el.id,
+    id: el.id.toString(),
     name: el.title,
     summary: formatRecipeDescription(el.summary),
     diets: el.diets.map((ele) => ele),
@@ -34,8 +34,9 @@ const getAllRecipes = async () => {
 };
 
 const getRecipeById = async (id) => {
-  const recipe = await Recipe.findByPk(id);
-  return recipe;
+  const recipes = await getAllRecipes();
+  const findEntry = recipes.find((r) => r.id === id);
+  return findEntry;
 };
 
 const deleteRecipe = async (id) => {
