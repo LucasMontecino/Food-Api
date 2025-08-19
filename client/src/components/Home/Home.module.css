@@ -55,17 +55,18 @@
   height: 3em;
   padding: 0em;
   border-radius: 50%;
-  background: #2f4f42;
+  background-color: #2f4f42;
   color: #faebd7;
-  transition: opacity 250ms ease;
+  transition: background-color 250ms ease;
 
   position: absolute;
   left: 0;
   vertical-align: middle;
 }
 
-.navToggle:hover {
-  opacity: 50%;
+.navToggle:hover,
+.navToggle:focus {
+  background-color: #426f5d;
 }
 
 .hamburger {
